@@ -1,0 +1,34 @@
+from os import system
+from datetime import datetime, timedelta
+
+
+def retorno_montante(c, i, n):
+        montante = c * (1 + i/100)**n
+        return round(montante)
+
+try:
+    investimento = (input('Tipo de instimento (CBI ou LCI): '))        
+    c = float(input('Capital inicial: '))
+    i = float(input('Taxa de juros mensal (em %): '))
+    n = int(input('Quantidade de meses: '))
+
+
+    hoje = datetime.now()
+    vencimento = hoje + timedelta(days=30*n)
+
+    print('\nResumo do investimento: ')
+    print(f'Tipo de investimento: {investimento} ')
+    print(f'Capital inicial: {c:.2f} ')
+    print(f'Taxa de juros: {i:.2f}% ')
+    print(f'Número de meses: {n} meses ')
+    print(f'Montante final: {retorno_montante(c, i, n):.2f} ')
+
+    print('\nDatas: ')
+    print(f'data de vencimento: {hoje.strftime("%d/%m/%y")} ')
+    print(f'data de vencimento: {vencimento.strftime("%d/%m/%y")} ')
+
+    print('\nPressione Enter para sair...')
+
+   
+except ValueError:
+    print('Valor incorreto, insira valores numericos para capital, taxa e meses então tente novamente: ')
